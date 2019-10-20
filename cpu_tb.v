@@ -5,12 +5,22 @@ module cpu_tb(clk, reset, s, load, in, out, N, V, Z, w);
     
 	reg [15:0] in;
    
-	reg [15:0] out;
+	wire [15:0] sim_out;
    
-	reg N, V, Z, w;
+	wire sim_N, sim_V, sim_Z, sim_w;
 
-	cpu DUT(
-
+	cpu DUT(	.clk (clk),
+			.reset (reset),
+			.s (s),
+			.load (load),
+			.in (in),
+			.out (sim_out),
+			.N (sim_N),
+			.V (sim_V),
+			.Z (sim_Z),
+			.w (sim_w);
+	
+	//clock signal
 	initial begin
     		clk = 1; #5;
     		forever begin
@@ -21,6 +31,7 @@ module cpu_tb(clk, reset, s, load, in, out, N, V, Z, w);
 
 
 	initial begin
+		//test ADD instruction
 		
 	end
 endmodule
